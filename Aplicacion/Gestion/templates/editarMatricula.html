@@ -27,11 +27,25 @@
             </select><br>
 
             <label for="ciclo">Ciclo:</label>
-            <input class="form-control" type="text" name="ciclo" id="ciclo" value="{{ matriculaEditar.ciclo }}"><br>
+            <input class="form-control" type="text" name="ciclo" id="ciclo" value="{{ matriculaEditar.ciclo }}" required><br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/matricula"><i class="fa fa-times"></i> Cancelar</a>
         </form>
+        <script>
+            $("#frm_nueva_matricula").validate({
+                rules: {
+                    estudiante: { required: true },
+                    materia: { required: true },
+                    ciclo: { required: true }
+                },
+                messages: {
+                    estudiante: { required: "Seleccione un estudiante" },
+                    materia: { required: "Seleccione una materia" },
+                    ciclo: { required: "Campo obligatorio" }
+                }
+            });
+        </script>
     </div>
     <div class="col-md-3"></div>
 </div>
