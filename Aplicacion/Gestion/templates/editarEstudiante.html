@@ -5,21 +5,35 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Estudiante</h1>
 
-        <form action="/procesarEdicionEstudiante/{{ estudianteEditar.cedula }}/" method="post">
+        <form action="/procesarEdicionEstudiante/{{ estudianteEditar.cedula }}/" method="post" id ="frm_editar_estudiante">
             {% csrf_token %}
 
             <label for="cedula">Cédula:</label>
-            <input class="form-control" type="text" name="cedula" id="cedula" value="{{ estudianteEditar.cedula }}" readonly><br>
+            <input class="form-control" type="text" name="cedula" id="cedula" value="{{ estudianteEditar.cedula }}" required readonly><br>
 
             <label for="nombre">Nombre:</label>
-            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ estudianteEditar.nombre }}"><br>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ estudianteEditar.nombre }}" required><br>
 
             <label for="correo">Correo:</label>
-            <input class="form-control" type="email" name="correo" id="correo" value="{{ estudianteEditar.correo }}"><br>
+            <input class="form-control" type="email" name="correo" id="correo" value="{{ estudianteEditar.correo }}" required><br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/estudiante"><i class="fa fa-times"></i> Cancelar</a>
         </form>
+        <script>
+            $("#frm_editar_estudiante").validate({
+                rules: {
+                    cedula: { required: true },
+                    nombre: { required: true },
+                    correo: { required: true, email: true }
+                },
+                messages: {
+                    cedula: { required: "Campo obligatorio" },
+                    nombre: { required: "Campo obligatorio" },
+                    correo: { required: "Correo requerido", email: "Correo inválido" }
+                }
+            });
+        </script>
     </div>
     <div class="col-md-3"></div>
 </div>
