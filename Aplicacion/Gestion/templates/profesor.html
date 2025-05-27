@@ -1,0 +1,47 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<h1>Listado de Profesores</h1>
+<a href="/nuevoProfesor/" class="btn btn-primary">Agregar Profesor</a>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <script>
+            function eliminarProfesor(cedula){
+                Swal.fire({
+                    title: "CONFIRMACIÓN",
+                    text: "¿Deseas eliminar este profesor?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href="/eliminarProfesor/"+cedula
+                    }
+                });
+            }
+        </script>
+        {% for p in profesores %}
+        <tr>
+            <td>{{ p.cedula }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.correo }}</td>
+            <td>
+                <a href="/editarProfesor/{{p.cedula}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+                <a href="#" onclick="eliminarProfesor('{{p.cedula}}')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

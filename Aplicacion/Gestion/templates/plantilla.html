@@ -1,0 +1,545 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- importando JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- importando JQUERY VALIDATION-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js "></script>
+
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- JS de Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Importando iconos  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- Importando sweealert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="assets/img/kaiadmin/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["assets/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'plantilla/kaiadmin/assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'plantilla/kaiadmin/assets/css/plugins.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'plantilla/kaiadmin/assets/css/kaiadmin.min.css' %}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'plantilla/kaiadmin/assets/css/demo.css '%}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+              <img
+                src="{% static 'plantilla/kaiadmin/assets/img/kaiadmin/logo_light.svg' %}" 
+                alt="navbar brand"
+                class="navbar-brand"
+                height="20"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>ma
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- End Logo Header -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#dashboard"
+                  class="collapsed"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-home"></i>
+                  <p>Matriculas</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="dashboard">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="/profesor">
+                        <span class="sub-item">PROFESOR</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/materia">
+                        <span class="sub-item">MATERIA</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/estudiante">
+                        <span class="sub-item">Estudiante</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/matricula">
+                        <span class="sub-item">MATRICULA</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+              </li>
+              <li class="nav-item">
+                <a href="widgets.html">
+                  <i class="fas fa-desktop"></i>
+                  <p>Widgets</p>
+                  <span class="badge badge-success">4</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a href="index.html" class="logo">
+                <img
+                  src="assets/img/kaiadmin/logo_light.svg"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <nav
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+              >
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-search pe-1">
+                      <i class="fa fa-search search-icon"></i>
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search ..."
+                    class="form-control"
+                  />
+                </div>
+              </nav>
+
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="messageDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu messages-notif-box animated fadeIn"
+                    aria-labelledby="messageDropdown"
+                  >
+                    <li>
+                      <div
+                        class="dropdown-title d-flex justify-content-between align-items-center"
+                      >
+                        Messages
+                        <a href="#" class="small">Mark all as read</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="message-notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="assets/img/jm_denis.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jimmy Denis</span>
+                              <span class="block"> How are you ? </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="assets/img/chadengle.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Chad</span>
+                              <span class="block"> Ok, Thanks ! </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="assets/img/mlane.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jhon Doe</span>
+                              <span class="block">
+                                Ready for the meeting today...
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="assets/img/talha.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Talha</span>
+                              <span class="block"> Hi, Apa Kabar ? </span>
+                              <span class="time">17 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >See all messages<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="notifDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-bell"></i>
+                    <span class="notification">4</span>
+                  </a>
+                  <ul
+                    class="dropdown-menu notif-box animated fadeIn"
+                    aria-labelledby="notifDropdown"
+                  >
+                    <li>
+                      <div class="dropdown-title">
+                        You have 4 new notification
+                      </div>
+                    </li>
+                    <li>
+                      <div class="notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-icon notif-primary">
+                              <i class="fa fa-user-plus"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> New user registered </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-icon notif-success">
+                              <i class="fa fa-comment"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block">
+                                Rahmad commented on Admin
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="assets/img/profile2.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="block">
+                                Reza send messages to you
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-icon notif-danger">
+                              <i class="fa fa-heart"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> Farrah liked Admin </span>
+                              <span class="time">17 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >See all notifications<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-layer-group"></i>
+                  </a>
+                  <div class="dropdown-menu quick-actions animated fadeIn">
+                    <div class="quick-actions-header">
+                      <span class="title mb-1">Quick Actions</span>
+                      <span class="subtitle op-7">Shortcuts</span>
+                    </div>
+                    <div class="quick-actions-scroll scrollbar-outer">
+                      <div class="quick-actions-items">
+                        <div class="row m-0">
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-danger rounded-circle">
+                                <i class="far fa-calendar-alt"></i>
+                              </div>
+                              <span class="text">Calendar</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-warning rounded-circle"
+                              >
+                                <i class="fas fa-map"></i>
+                              </div>
+                              <span class="text">Maps</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-info rounded-circle">
+                                <i class="fas fa-file-excel"></i>
+                              </div>
+                              <span class="text">Reports</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-success rounded-circle"
+                              >
+                                <i class="fas fa-envelope"></i>
+                              </div>
+                              <span class="text">Emails</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-primary rounded-circle"
+                              >
+                                <i class="fas fa-file-invoice-dollar"></i>
+                              </div>
+                              <span class="text">Invoice</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-secondary rounded-circle"
+                              >
+                                <i class="fas fa-credit-card"></i>
+                              </div>
+                              <span class="text">Payments</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <img
+                        src="assets/img/profile.jpg"
+                        alt="..."
+                        class="avatar-img rounded-circle"
+                      />
+                    </div>
+                    <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">JONATHAN ALAY</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <img
+                              src="assets/img/profile.jpg"
+                              alt="image profile"
+                              class="avatar-img rounded"
+                            />
+                          </div>
+                          <div class="u-text">
+                            <h4>Hizrian</h4>
+                            <p class="text-muted">hello@example.com</p>
+                            <a
+                              href="profile.html"
+                              class="btn btn-xs btn-secondary btn-sm"
+                              >View Profile</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="#">My Balance</a>
+                        <a class="dropdown-item" href="#">Inbox</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Account Setting</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+
+        <div class="container">
+          <div class="page-inner">
+
+    {% block contenido %}
+
+
+    {% endblock %}     
+        <div class="row bg-info" style="padding:20px;">
+        <div class="col-md-4 text-center">
+            <img height="100px" src="data:image/png;base64,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" >
+        </div>
+        <div class="col-md-4 text-center">
+            <h4><b> DESARROLLADO POR:</b></h4>
+            <H5>Jonathan Alay</H5>
+        </div>
+        <div class="col-md-4 text-center">
+            <h1>Latacunga 2025 </h1>
+        </div>
+    </div>
+  </body>
+</html>

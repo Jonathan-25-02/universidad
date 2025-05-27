@@ -1,0 +1,32 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Editar Materia</h1>
+
+        <form action="/procesarEdicionMateria/{{ materiaEditar.id }}" method="post">
+            {% csrf_token %}
+
+            <label for="codigo">Código:</label>
+            <input class="form-control" type="text" name="codigo" id="codigo" value="{{ materiaEditar.codigo }}"><br>
+
+            <label for="nombre">Nombre:</label>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ materiaEditar.nombre }}"><br>
+
+            <label for="profesor">Profesor:</label>
+            <select class="form-control" name="profesor" id="profesor">
+                {% for p in profesores %}
+                    <option value="{{ p.cedula }}" {% if p.cedula == materiaEditar.profesor.cedula %}selected{% endif %}>
+                        {{ p.nombre }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+            <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
+            <a class="btn btn-outline-danger" href="/materia"><i class="fa fa-times"></i> Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}

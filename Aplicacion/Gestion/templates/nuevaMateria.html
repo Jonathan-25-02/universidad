@@ -1,0 +1,45 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Nueva Materia</h1>
+
+        <form action="/guardarMateria/" method="post" id="frm_nueva_materia">
+            {% csrf_token %}
+
+            <label for="codigo">Código:</label>
+            <input class="form-control" type="text" name="codigo" id="codigo" required><br>
+
+            <label for="nombre">Nombre:</label>
+            <input class="form-control" type="text" name="nombre" id="nombre" required><br>
+
+            <label for="profesor">Profesor:</label>
+            <select class="form-control" name="profesor" id="profesor" required>
+                {% for p in profesores %}
+                    <option value="{{ p.cedula }}">{{ p.nombre }}</option>
+                {% endfor %}
+            </select><br>
+
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="/materia">Cancelar</a>
+        </form>
+
+        <script>
+            $("#frm_nueva_materia").validate({
+                rules: {
+                    codigo: { required: true },
+                    nombre: { required: true },
+                    profesor: { required: true }
+                },
+                messages: {
+                    codigo: { required: "Campo obligatorio" },
+                    nombre: { required: "Campo obligatorio" },
+                    profesor: { required: "Debe seleccionar un profesor" }
+                }
+            });
+        </script>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}

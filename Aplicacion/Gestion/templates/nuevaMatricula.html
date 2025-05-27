@@ -1,0 +1,49 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Nueva Matrícula</h1>
+
+        <form action="/guardarMatricula/" method="post" id="frm_nueva_matricula">
+            {% csrf_token %}
+
+            <label for="estudiante">Estudiante:</label>
+            <select class="form-control" name="estudiante" id="estudiante" required>
+                {% for e in estudiantes %}
+                    <option value="{{ e.cedula }}">{{ e.nombre }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="materia">Materia:</label>
+            <select class="form-control" name="materia" id="materia" required>
+                {% for m in materias %}
+                    <option value="{{ m.id }}">{{ m.nombre }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="ciclo">Ciclo:</label>
+            <input class="form-control" type="text" name="ciclo" id="ciclo" required><br>
+
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="/matricula">Cancelar</a>
+        </form>
+
+        <script>
+            $("#frm_nueva_matricula").validate({
+                rules: {
+                    estudiante: { required: true },
+                    materia: { required: true },
+                    ciclo: { required: true }
+                },
+                messages: {
+                    estudiante: { required: "Seleccione un estudiante" },
+                    materia: { required: "Seleccione una materia" },
+                    ciclo: { required: "Campo obligatorio" }
+                }
+            });
+        </script>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}

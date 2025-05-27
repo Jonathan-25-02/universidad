@@ -1,0 +1,49 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<h1>Listado de Materias</h1>
+<a href="/nuevaMateria/" class="btn btn-primary">Agregar Materia</a>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Profesor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <script>
+            function eliminarMateria(id){
+                Swal.fire({
+                    title: "CONFIRMACIÓN",
+                    text: "¿Deseas eliminar esta materia?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href="/eliminarMateria/"+id
+                    }
+                });
+            }
+        </script>
+        {% for m in materias %}
+        <tr>
+            <td>{{ m.id }}</td>
+            <td>{{ m.codigo }}</td>
+            <td>{{ m.nombre }}</td>
+            <td>{{ m.profesor.nombre }}</td>
+            <td>
+                <a href="/editarMateria/{{m.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+                <a href="#" onclick="eliminarMateria('{{m.id}}')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
