@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Matrícula</h1>
 
-        <form action="/procesarEdicionMatricula/{{ matriculaEditar.id }}" method="post">
+        <form action="/procesarEdicionMatricula/{{ matriculaEditar.id_matricula }}/" method="post" id="frm_editar_matricula">
             {% csrf_token %}
 
             <label for="estudiante">Estudiante:</label>
@@ -18,9 +18,9 @@
             </select><br>
 
             <label for="materia">Materia:</label>
-            <select class="form-control" name="materia" id="materia">
+            <select class="form-control" name="materia" id="materia" required>
                 {% for m in materias %}
-                    <option value="{{ m.id }}" {% if m.id == matriculaEditar.materia.id %}selected{% endif %}>
+                    <option value="{{ m.id_materia }}" {% if m.id_materia == matriculaEditar.materia.id_materia %}selected{% endif %}>
                         {{ m.nombre }}
                     </option>
                 {% endfor %}

@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Estudiante</h1>
 
-        <form action="/procesarEdicionEstudiante/{{ estudianteEditar.cedula }}" method="post">
+        <form action="/procesarEdicionEstudiante/{{ estudianteEditar.cedula }}/" method="post">
             {% csrf_token %}
 
             <label for="cedula">Cédula:</label>

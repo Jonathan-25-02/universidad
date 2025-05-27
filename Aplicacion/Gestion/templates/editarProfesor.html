@@ -1,25 +1,40 @@
 {% extends './plantilla.html' %}
+{% load static %}
 {% block contenido %}
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light">
         <h1>Editar Profesor</h1>
 
-        <form action="/procesarEdicionProfesor/{{ editarProfesor.cedula }}" method="post">
+        <form action="/procesarEdicionProfesor/{{  profesorEditar.cedula }}/" method="post" id="frm_editar_profesor">
             {% csrf_token %}
 
             <label for="cedula">Cédula:</label>
-            <input class="form-control" type="text" name="cedula" id="cedula" value="{{ editarProfesor.cedula }}" readonly><br>
+            <input class="form-control" type="text" name="cedula" id="cedula" value="{{ profesorEditar.cedula }}" required readonly><br>
 
             <label for="nombre">Nombre:</label>
-            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ editarProfesor.nombre }}"><br>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ profesorEditar.nombre }}" required><br>
 
             <label for="correo">Correo:</label>
-            <input class="form-control" type="email" name="correo" id="correo" value="{{ profesorEditar.correo }}"><br>
+            <input class="form-control" type="email" name="correo" id="correo" value="{{  profesorEditar.correo }}" required><br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/profesor"><i class="fa fa-times"></i> Cancelar</a>
         </form>
+        <script>
+            $("#frm_editar_profesor").validate({
+                rules: {
+                    cedula: { required: true },
+                    nombre: { required: true, minlength: 3 },
+                    correo: { required: true, email: true }
+                },
+                messages: {
+                    cedula: { required: "Campo obligatorio" },
+                    nombre: { required: "Campo obligatorio", minlength: "Mínimo 3 caracteres" },
+                    correo: { required: "Campo obligatorio", email: "Correo inválido" }
+                }
+            });
+        </script>
     </div>
     <div class="col-md-3"></div>
 </div>

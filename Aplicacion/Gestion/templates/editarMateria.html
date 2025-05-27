@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Materia</h1>
 
-        <form action="/procesarEdicionMateria/{{ materiaEditar.id }}" method="post">
+        <form action="/procesarEdicionMateria/{{ materiaEditar.id_materia }}/" method="post">
             {% csrf_token %}
 
             <label for="codigo">Código:</label>

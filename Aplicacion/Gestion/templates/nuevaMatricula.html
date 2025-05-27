@@ -18,7 +18,7 @@
             <label for="materia">Materia:</label>
             <select class="form-control" name="materia" id="materia" required>
                 {% for m in materias %}
-                    <option value="{{ m.id }}">{{ m.nombre }}</option>
+                    <option value="{{ m.id_materia }}">{{ m.nombre }}</option>
                 {% endfor %}
             </select><br>
 

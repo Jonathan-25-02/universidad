@@ -22,7 +22,7 @@ def guardarProfesor(request):
 
 def editarProfesor(request, cedula):
     prof = Profesor.objects.get(cedula=cedula)
-    return render(request, "editarProfesor.html", {'profesor': prof})
+    return render(request, "editarProfesor.html", {'profesorEditar': prof})
 
 def procesarEdicionProfesor(request, cedula):
     prof = Profesor.objects.get(cedula=cedula)
@@ -50,6 +50,7 @@ def nuevaMateria(request):
 def guardarMateria(request):
     profesor = Profesor.objects.get(cedula=request.POST["profesor"])
     Materia.objects.create(
+        codigo=request.POST["codigo"],
         nombre=request.POST["nombre"],
         profesor=profesor
     )
@@ -59,10 +60,11 @@ def guardarMateria(request):
 def editarMateria(request, id):
     mat = Materia.objects.get(id_materia=id)
     profesores = Profesor.objects.all()
-    return render(request, "editarMateria.html", {'materia': mat, 'profesores': profesores})
+    return render(request, "editarMateria.html", {'materiaEditar': mat, 'profesores': profesores})
 
 def procesarEdicionMateria(request, id):
     mat = Materia.objects.get(id_materia=id)
+    mat.codigo = request.POST["codigo"]  # <- Esto es lo que te faltaba, mi cielo
     mat.nombre = request.POST["nombre"]
     mat.profesor = Profesor.objects.get(cedula=request.POST["profesor"])
     mat.save()
@@ -124,12 +126,14 @@ def nuevaMatricula(request):
 def guardarMatricula(request):
     estudiante = Estudiante.objects.get(cedula=request.POST["estudiante"])
     materia = Materia.objects.get(id_materia=request.POST["materia"])
+    ciclo = request.POST["ciclo"]
+
     Matricula.objects.create(
         estudiante=estudiante,
         materia=materia,
-        fecha_matricula=request.POST["fecha_matricula"],
-        nota_final=request.POST.get("nota_final")
+        ciclo=ciclo
     )
+
     messages.success(request, "Matrícula guardada exitosamente")
     return redirect('/matricula')
 
@@ -137,15 +141,19 @@ def editarMatricula(request, id):
     mat = Matricula.objects.get(id_matricula=id)
     estudiantes = Estudiante.objects.all()
     materias = Materia.objects.all()
-    return render(request, "editarMatricula.html", {'matricula': mat, 'estudiantes': estudiantes, 'materias': materias})
+    return render(request, "editarMatricula.html", {
+        'matriculaEditar': mat,
+        'estudiantes': estudiantes,
+        'materias': materias
+    })
 
 def procesarEdicionMatricula(request, id):
     mat = Matricula.objects.get(id_matricula=id)
     mat.estudiante = Estudiante.objects.get(cedula=request.POST["estudiante"])
     mat.materia = Materia.objects.get(id_materia=request.POST["materia"])
-    mat.fecha_matricula = request.POST["fecha_matricula"]
-    mat.nota_final = request.POST.get("nota_final")
+    mat.ciclo = request.POST["ciclo"]
     mat.save()
+
     messages.success(request, "Matrícula actualizada exitosamente")
     return redirect('/matricula')
 

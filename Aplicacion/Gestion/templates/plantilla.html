@@ -541,5 +541,30 @@
             <h1>Latacunga 2025 </h1>
         </div>
     </div>
+    {% if messages %}
+      {% for mensaje in messages %}
+        <script>
+        //Swal.fire("SweetAlert2 is working!");
+          Swal.fire({
+            title: "CONFIRMACION",
+            text: "{{mensaje}}",
+            icon:"Success"
+            })
+   
+        </script>
+
+
+      {%endfor%}
+    {% endif%}
+
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .form-control.error {
+            border: 1px solid red;
+        }      
+    </style>
   </body>
 </html>
