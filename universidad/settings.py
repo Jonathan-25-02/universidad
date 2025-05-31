@@ -122,12 +122,9 @@ STATICFILES_DIRS=(os.path.join(BASE_DIR,'universidad/static'),)
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-<<<<<<< HEAD
 
 #configurando el acceso a la carpeta  media (subir archivos )
 #sudo chmod 777 -R nombreCarpeta   o chown
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=(os.path.join(BASE_DIR, 'universidad/media/'))
-=======
->>>>>>> c2e7166c1fb100d877013c799ff821e7abfc8f5a

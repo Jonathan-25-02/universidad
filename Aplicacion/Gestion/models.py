@@ -6,10 +6,7 @@ class Profesor(models.Model):
     cedula = models.CharField(primary_key=True, max_length=10)
     nombre = models.CharField(max_length=100)
     correo = models.EmailField()
-<<<<<<< HEAD
     logo=models.FileField(upload_to='cargos', null=True,blank=True) #subir archivo
-=======
->>>>>>> c2e7166c1fb100d877013c799ff821e7abfc8f5a
 
     def __str__(self):
         return f"{self.nombre} ({self.cedula})"
