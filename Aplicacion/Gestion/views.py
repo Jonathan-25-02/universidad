@@ -15,7 +15,8 @@ def guardarProfesor(request):
     Profesor.objects.create(
         cedula=request.POST["cedula"],
         nombre=request.POST["nombre"],
-        correo=request.POST["correo"]
+        correo=request.POST["correo"],
+        logo=request.FILES.get("logo")
     )
     messages.success(request, "Profesor guardado exitosamente")
     return redirect('/profesor')
@@ -28,6 +29,7 @@ def procesarEdicionProfesor(request, cedula):
     prof = Profesor.objects.get(cedula=cedula)
     prof.nombre = request.POST["nombre"]
     prof.correo = request.POST["correo"]
+    prof.logo=request.FILES.get("logo")
     prof.save()
     messages.success(request, "Profesor actualizado exitosamente")
     return redirect('/profesor')

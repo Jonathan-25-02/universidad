@@ -6,7 +6,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Profesor</h1>
 
-        <form action="/procesarEdicionProfesor/{{  profesorEditar.cedula }}/" method="post" id="frm_editar_profesor">
+        <form action="/procesarEdicionProfesor/{{  profesorEditar.cedula }}/" method="post" enctype="multipart/form-data" id="frm_editar_profesor">
             {% csrf_token %}
 
             <label for="cedula">Cédula:</label>
@@ -17,6 +17,10 @@
 
             <label for="correo">Correo:</label>
             <input class="form-control" type="email" name="correo" id="correo" value="{{  profesorEditar.correo }}" required><br>
+
+            <label for="logo"> logotipo: </label>
+            <input type="file" name="logo" id="logo" class ="form-control" value="{{  profesorEditar.logo }}" required>
+            <br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/profesor"><i class="fa fa-times"></i> Cancelar</a>
