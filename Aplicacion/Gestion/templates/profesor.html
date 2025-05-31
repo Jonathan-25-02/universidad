@@ -11,6 +11,7 @@
             <th>Cédula</th>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Logotipo</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -37,6 +38,13 @@
             <td>{{ p.cedula }}</td>
             <td>{{ p.nombre }}</td>
             <td>{{ p.correo }}</td>
+            <td>
+                {% if p.logo %}
+                    <img src ="{{p.logo.url}}" height = "80px" alt="">
+                {% else %}
+                    ninguna
+                {% endif %}
+            </td>
             <td>
                 <a href="/editarProfesor/{{p.cedula}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
                 <a href="#" onclick="eliminarProfesor('{{p.cedula}}')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
