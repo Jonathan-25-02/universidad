@@ -15,8 +15,12 @@ def guardarProfesor(request):
     Profesor.objects.create(
         cedula=request.POST["cedula"],
         nombre=request.POST["nombre"],
+<<<<<<< HEAD
         correo=request.POST["correo"],
         logo=request.FILES.get("logo")
+=======
+        correo=request.POST["correo"]
+>>>>>>> c2e7166c1fb100d877013c799ff821e7abfc8f5a
     )
     messages.success(request, "Profesor guardado exitosamente")
     return redirect('/profesor')
