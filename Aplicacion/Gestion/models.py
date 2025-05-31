@@ -18,6 +18,7 @@ class Materia(models.Model):
 
     nombre = models.CharField(max_length=100)
     profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+    logo=models.FileField(upload_to='cargos', null=True,blank=True) 
 
     def __str__(self):
         return f"{self.nombre} - Prof: {self.profesor.nombre}"

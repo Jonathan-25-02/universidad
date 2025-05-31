@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Nueva Materia</h1>
 
-        <form action="/guardarMateria/" method="post" id="frm_nueva_materia">
+        <form action="/guardarMateria/" enctype="multipart/form-data" method="post" id="frm_nueva_materia">
             {% csrf_token %}
 
             <label for="codigo">Código:</label>
@@ -20,6 +20,10 @@
                     <option value="{{ p.cedula }}">{{ p.nombre }}</option>
                 {% endfor %}
             </select><br>
+
+            <label for="logo"> logotipo: </label>
+            <input type="file" name="logo" id="logo" class ="form-control">
+            <br>
 
             <button class="btn btn-success" type="submit">Guardar</button>
             <a class="btn btn-outline-danger" href="/materia">Cancelar</a>

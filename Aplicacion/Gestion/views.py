@@ -54,7 +54,9 @@ def guardarMateria(request):
     Materia.objects.create(
         codigo=request.POST["codigo"],
         nombre=request.POST["nombre"],
+        logo=request.FILES.get("logo"),
         profesor=profesor
+        
     )
     messages.success(request, "Materia guardada exitosamente")
     return redirect('/materia')
@@ -69,6 +71,7 @@ def procesarEdicionMateria(request, id):
     mat.codigo = request.POST["codigo"]  # <- Esto es lo que te faltaba, mi cielo
     mat.nombre = request.POST["nombre"]
     mat.profesor = Profesor.objects.get(cedula=request.POST["profesor"])
+    mat.logo=request.FILES.get("logo")
     mat.save()
     messages.success(request, "Materia actualizada exitosamente")
     return redirect('/materia')

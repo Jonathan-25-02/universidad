@@ -11,6 +11,7 @@
             <th>Código</th>
             <th>Nombre</th>
             <th>Profesor</th>
+            <th>Foto</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -38,6 +39,13 @@
             <td>{{ m.codigo }}</td>
             <td>{{ m.nombre }}</td>
             <td>{{ m.profesor.nombre }}</td>
+            <td>
+                {% if m.logo %}
+                    <img src ="{{m.logo.url}}" height = "80px" alt="">
+                {% else %}
+                    ninguna
+                {% endif %}
+            </td>
             <td>
                 <a href="/editarMateria/{{m.id_materia}}/" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
                 <a href="#" onclick="eliminarMateria('{{m.id}}')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>

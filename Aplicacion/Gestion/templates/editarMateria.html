@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Materia</h1>
 
-        <form action="/procesarEdicionMateria/{{ materiaEditar.id_materia }}/" method="post" id="frm_editar_materia">
+        <form action="/procesarEdicionMateria/{{ materiaEditar.id_materia }}/" enctype="multipart/form-data"  method="post" id="frm_editar_materia">
             {% csrf_token %}
 
             <label for="codigo">Código:</label>
@@ -22,6 +22,10 @@
                     </option>
                 {% endfor %}
             </select><br>
+
+            <label for="logo"> logotipo: </label>
+            <input type="file" name="logo" id="logo" class ="form-control" value="{{ materiaEditar.logo }}" required>
+            <br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/materia"><i class="fa fa-times"></i> Cancelar</a>
