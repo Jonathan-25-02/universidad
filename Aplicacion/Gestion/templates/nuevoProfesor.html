@@ -6,11 +6,9 @@
     <div class="col-md-6 bg-light">
         <h1>Nuevo Profesor</h1>
 
-<<<<<<< HEAD
+
         <form action="/guardarProfesor/" method="post" enctype="multipart/form-data" id="frm_nuevo_profesor">
-=======
-        <form action="/guardarProfesor/" method="post" id="frm_nuevo_profesor">
->>>>>>> c2e7166c1fb100d877013c799ff821e7abfc8f5a
+
             {% csrf_token %}
 
             <label for="cedula">Cédula:</label>
@@ -22,13 +20,12 @@
             <label for="correo">Correo:</label>
             <input class="form-control" type="email" name="correo" id="correo" required><br>
 
-<<<<<<< HEAD
+
             <label for="logo"> logotipo: </label>
             <input type="file" name="logo" id="logo" class ="form-control" required >
             <br>
 
-=======
->>>>>>> c2e7166c1fb100d877013c799ff821e7abfc8f5a
+
             <button class="btn btn-success" type="submit">Guardar</button>
             <a class="btn btn-outline-danger" href="/profesor">Cancelar</a>
         </form>
