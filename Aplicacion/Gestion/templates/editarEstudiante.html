@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Estudiante</h1>
 
-        <form action="/procesarEdicionEstudiante/{{ estudianteEditar.cedula }}/" method="post" id ="frm_editar_estudiante">
+        <form action="/procesarEdicionEstudiante/{{ estudianteEditar.cedula }}/" enctype="multipart/form-data" method="post" id ="frm_editar_estudiante">
             {% csrf_token %}
 
             <label for="cedula">Cédula:</label>
@@ -16,6 +16,10 @@
 
             <label for="correo">Correo:</label>
             <input class="form-control" type="email" name="correo" id="correo" value="{{ estudianteEditar.correo }}" required><br>
+
+            <label for="logo"> logotipo: </label>
+            <input type="file" name="logo" id="logo" class ="form-control"value="{{ estudianteEditar.logo }}" required>
+            <br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/estudiante"><i class="fa fa-times"></i> Cancelar</a>
