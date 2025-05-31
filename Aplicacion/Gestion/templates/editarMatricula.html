@@ -5,7 +5,7 @@
     <div class="col-md-6 bg-light">
         <h1>Editar Matrícula</h1>
 
-        <form action="/procesarEdicionMatricula/{{ matriculaEditar.id_matricula }}/" method="post" id="frm_editar_matricula">
+        <form action="/procesarEdicionMatricula/{{ matriculaEditar.id_matricula }}/" method="post" enctype="multipart/form-data" id="frm_editar_matricula">
             {% csrf_token %}
 
             <label for="estudiante">Estudiante:</label>
@@ -28,6 +28,10 @@
 
             <label for="ciclo">Ciclo:</label>
             <input class="form-control" type="text" name="ciclo" id="ciclo" value="{{ matriculaEditar.ciclo }}" required><br>
+
+            <label for="logo"> logotipo: </label>
+            <input type="file" name="logo" id="logo" class ="form-control" value="{{ matriculaEditar.ciclo }}" required>
+            <br>
 
             <button class="btn btn-warning" type="submit"><i class="fa fa-pen"></i> Editar</button>
             <a class="btn btn-outline-danger" href="/matricula"><i class="fa fa-times"></i> Cancelar</a>

@@ -94,7 +94,8 @@ def guardarEstudiante(request):
     Estudiante.objects.create(
         cedula=request.POST["cedula"],
         nombre=request.POST["nombre"],
-        correo=request.POST["correo"]
+        correo=request.POST["correo"],
+        logo=request.FILES.get("logo")
     )
     messages.success(request, "Estudiante guardado exitosamente")
     return redirect('/estudiante')
@@ -107,6 +108,7 @@ def procesarEdicionEstudiante(request, cedula):
     est = Estudiante.objects.get(cedula=cedula)
     est.nombre = request.POST["nombre"]
     est.correo = request.POST["correo"]
+    est.logo=request.FILES.get("logo")
 
     est.save()
     messages.success(request, "Estudiante actualizado exitosamente")
@@ -132,24 +134,29 @@ def guardarMatricula(request):
     estudiante = Estudiante.objects.get(cedula=request.POST["estudiante"])
     materia = Materia.objects.get(id_materia=request.POST["materia"])
     ciclo = request.POST["ciclo"]
+    logo=request.FILES.get("logo")
 
     Matricula.objects.create(
         estudiante=estudiante,
         materia=materia,
-        ciclo=ciclo
+        ciclo=ciclo,
+        logo=logo
     )
 
     messages.success(request, "Matrícula guardada exitosamente")
     return redirect('/matricula')
 
 def editarMatricula(request, id):
+    
     mat = Matricula.objects.get(id_matricula=id)
     estudiantes = Estudiante.objects.all()
     materias = Materia.objects.all()
+    
     return render(request, "editarMatricula.html", {
         'matriculaEditar': mat,
         'estudiantes': estudiantes,
-        'materias': materias
+        'materias': materias,
+        
     })
 
 def procesarEdicionMatricula(request, id):
@@ -157,6 +164,7 @@ def procesarEdicionMatricula(request, id):
     mat.estudiante = Estudiante.objects.get(cedula=request.POST["estudiante"])
     mat.materia = Materia.objects.get(id_materia=request.POST["materia"])
     mat.ciclo = request.POST["ciclo"]
+    mat.logo=request.FILES.get("logo")
     mat.save()
 
     messages.success(request, "Matrícula actualizada exitosamente")

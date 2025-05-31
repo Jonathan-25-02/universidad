@@ -28,6 +28,7 @@ class Estudiante(models.Model):
     cedula = models.CharField(primary_key=True, max_length=10)
     nombre = models.CharField(max_length=100)
     correo = models.EmailField()
+    logo=models.FileField(upload_to='cargos', null=True,blank=True)
 
 
     def __str__(self):
@@ -39,6 +40,7 @@ class Matricula(models.Model):
     estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
     ciclo = models.CharField(max_length=100)
+    logo=models.FileField(upload_to='cargos', null=True,blank=True)
 
     def __str__(self):
         return f"{self.estudiante.nombre} - {self.materia.nombre} ({self.fecha_matricula})"
