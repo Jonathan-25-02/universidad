@@ -7,7 +7,7 @@ class Profesor(models.Model):
     nombre = models.CharField(max_length=100)
     correo = models.EmailField()
     logo=models.FileField(upload_to='cargos', null=True,blank=True) #subir archivo
-
+    archivo = models.FileField(upload_to='documentos/', null=True, blank=True) #subir documento
     def __str__(self):
         return f"{self.nombre} ({self.cedula})"
 

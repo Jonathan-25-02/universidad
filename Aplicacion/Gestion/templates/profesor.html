@@ -12,6 +12,7 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th>Logotipo</th>
+            <th>Documentos</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -45,6 +46,15 @@
                     ninguna
                 {% endif %}
             </td>
+            <td>
+                {% if p.archivo %}
+                    <a href="{{ p.archivo.url }}" download>{{ p.archivo.name|cut:"cargos/" }}</a>
+                {% else %}
+                    Ningún archivo
+                {% endif %}
+            </td>
+
+
             <td>
                 <a href="/editarProfesor/{{p.cedula}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
                 <a href="#" onclick="eliminarProfesor('{{p.cedula}}')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>

@@ -1,0 +1,67 @@
+
+# enable-named-pipe
+key_buffer=16M
+max_allowed_packet=1M
+sort_buffer_size=512K
+net_buffer_length=8K
+read_buffer_size=256K
+read_rnd_buffer_size=512K
+myisam_sort_buffer_size=8M
+log_error="mysql_error.log"
+
+# Change here for bind listening
+# bind-address="127.0.0.1" 
+# bind-address = ::1          # for ipv6
+
+# Where do all the plugins live
+plugin_dir="C:/xampp/mysql/lib/plugin/"
+
+# Don't listen on a TCP/IP port at all. This can be a security enhancement,
+# if all processes that need to connect to mysqld run on the same host.
+# All interaction with mysqld must be made via Unix sockets or named pipes.
+# Note that using this option without enabling named pipes on Windows
+# (via the "enable-named-pipe" option) will render mysqld useless!
+# 
+# commented in by lampp security
+#skip-networking
+#skip-federated
+
+# Replication Master Server (default)
+# binary logging is required for replication
+# log-bin deactivated by default since XAMPP 1.4.11
+#log-bin=mysql-bin
+
+# required unique id between 1 and 2^32 - 1
+# defaults to 1 if master-host is not set
+# but will not function as a master if omitted
+server-id	=1
+
+# Replication Slave (comment out master section to use this)
+#
+# To configure this host as a replication slave, you can choose between
+# two methods :
+#
+# 1) Use the CHANGE MASTER TO command (fully described in our manual) -
+#    the syntax is:
+#
+#    CHANGE MASTER TO MASTER_HOST=<host>, MASTER_PORT=<port>,
+#    MASTER_USER=<user>, MASTER_PASSWORD=<password> ;
+#
+#    where you replace <host>, <user>, <password> by quoted strings and
+#    <port> by the master's port number (3306 by default).
+#
+#    Example:
+#
+#    CHANGE MASTER TO MASTER_HOST='125.564.12.1', MASTER_PORT=3306,
+#    MASTER_USER='joe', MASTER_PASSWORD='secret';
+#
+# OR
+#
+
+[myisamchk]
+key_buffer=20M
+sort_buffer_size=20M
+read_buffer=2M
+write_buffer=2M
+
+[mysqlhotcopy]

@@ -16,7 +16,8 @@ def guardarProfesor(request):
         cedula=request.POST["cedula"],
         nombre=request.POST["nombre"],
         correo=request.POST["correo"],
-        logo=request.FILES.get("logo")
+        logo=request.FILES.get("logo"),
+        archivo = request.FILES.get('archivo')
     )
     messages.success(request, "Profesor guardado exitosamente")
     return redirect('/profesor')
@@ -30,6 +31,8 @@ def procesarEdicionProfesor(request, cedula):
     prof.nombre = request.POST["nombre"]
     prof.correo = request.POST["correo"]
     prof.logo=request.FILES.get("logo")
+    if request.FILES.get("archivo"):
+        prof.archivo = request.FILES["archivo"]
     prof.save()
     messages.success(request, "Profesor actualizado exitosamente")
     return redirect('/profesor')
