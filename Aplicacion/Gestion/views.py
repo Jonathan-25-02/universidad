@@ -31,8 +31,7 @@ def procesarEdicionProfesor(request, cedula):
     prof.nombre = request.POST["nombre"]
     prof.correo = request.POST["correo"]
     prof.logo=request.FILES.get("logo")
-    if request.FILES.get("archivo"):
-        prof.archivo = request.FILES["archivo"]
+    prof.archivo = request.FILES.get('archivo')
     prof.save()
     messages.success(request, "Profesor actualizado exitosamente")
     return redirect('/profesor')
@@ -58,7 +57,8 @@ def guardarMateria(request):
         codigo=request.POST["codigo"],
         nombre=request.POST["nombre"],
         logo=request.FILES.get("logo"),
-        profesor=profesor
+        profesor=profesor,
+        archivo = request.FILES.get('archivo')
         
     )
     messages.success(request, "Materia guardada exitosamente")
@@ -75,6 +75,7 @@ def procesarEdicionMateria(request, id):
     mat.nombre = request.POST["nombre"]
     mat.profesor = Profesor.objects.get(cedula=request.POST["profesor"])
     mat.logo=request.FILES.get("logo")
+    mat.archivo = request.FILES.get('archivo')
     mat.save()
     messages.success(request, "Materia actualizada exitosamente")
     return redirect('/materia')
@@ -98,7 +99,8 @@ def guardarEstudiante(request):
         cedula=request.POST["cedula"],
         nombre=request.POST["nombre"],
         correo=request.POST["correo"],
-        logo=request.FILES.get("logo")
+        logo=request.FILES.get("logo"),
+        archivo = request.FILES.get('archivo')
     )
     messages.success(request, "Estudiante guardado exitosamente")
     return redirect('/estudiante')
@@ -112,6 +114,7 @@ def procesarEdicionEstudiante(request, cedula):
     est.nombre = request.POST["nombre"]
     est.correo = request.POST["correo"]
     est.logo=request.FILES.get("logo")
+    est.archivo = request.FILES.get('archivo')
 
     est.save()
     messages.success(request, "Estudiante actualizado exitosamente")
@@ -138,12 +141,14 @@ def guardarMatricula(request):
     materia = Materia.objects.get(id_materia=request.POST["materia"])
     ciclo = request.POST["ciclo"]
     logo=request.FILES.get("logo")
+    archivo = request.FILES.get('archivo')
 
     Matricula.objects.create(
         estudiante=estudiante,
         materia=materia,
         ciclo=ciclo,
-        logo=logo
+        logo=logo,
+        archivo=archivo
     )
 
     messages.success(request, "Matrícula guardada exitosamente")
@@ -168,6 +173,7 @@ def procesarEdicionMatricula(request, id):
     mat.materia = Materia.objects.get(id_materia=request.POST["materia"])
     mat.ciclo = request.POST["ciclo"]
     mat.logo=request.FILES.get("logo")
+    mat.archivo = request.FILES.get('archivo')
     mat.save()
 
     messages.success(request, "Matrícula actualizada exitosamente")

@@ -48,7 +48,7 @@
             </td>
             <td>
                 {% if p.archivo %}
-                    <a href="{{ p.archivo.url }}" download>{{ p.archivo.name|cut:"cargos/" }}</a>
+                    <a href="{{ p.archivo.url }}" download>{{ p.archivo.name }}</a>
                 {% else %}
                     Ningún archivo
                 {% endif %}

@@ -12,6 +12,7 @@
             <th>Nombre</th>
             <th>Profesor</th>
             <th>Foto</th>
+            <th>Dcumentos</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -46,6 +47,13 @@
                     ninguna
                 {% endif %}
             </td>
+
+            <td>
+                {% if m.archivo %}
+                    <a href="{{ m.archivo.url }}" download>{{ m.archivo.name }}</a>
+                {% else %}
+                    Ningún archivo
+                {% endif %}
             <td>
                 <a href="/editarMateria/{{m.id_materia}}/" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
                 <a href="#" onclick="eliminarMateria('{{m.id}}')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>

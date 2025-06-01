@@ -11,6 +11,7 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th>Foto</th>
+            <th>Documento</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -42,6 +43,13 @@
                     <img src ="{{e.logo.url}}" height = "80px" alt="">
                 {% else %}
                     ninguna
+                {% endif %}
+            </td>
+            <td>
+                {% if e.archivo %}
+                    <a href="{{ e.archivo.url }}" download>{{ e.archivo.name }}</a>
+                {% else %}
+                    Ningún archivo
                 {% endif %}
             </td>
             <td>
